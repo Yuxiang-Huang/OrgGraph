@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "vcs": {
-    "enabled": false,
+    "enabled": true,
     "clientKind": "git",
-    "useIgnoreFile": false
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": ["**", "!**/src/routeTree.gen.ts"]
   },
   "formatter": {
     "useEditorconfig": true
@@ -16,6 +19,11 @@
         // Conflicts with tsc noPropertyAccessFromIndexSignature
         "useLiteralKeys": "off"
       }
+    }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
     }
   }
 }
