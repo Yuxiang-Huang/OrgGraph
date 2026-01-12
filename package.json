@@ -14,10 +14,16 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "check-types": "turbo run check-types",
+    "check": "turbo run check",
     "dev": "turbo run dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "lint": "turbo run lint"
+    "format": "turbo run format",
+    "lint": "turbo run lint",
+    "preinstall": "npx only-allow bun",
+    "start": "turbo start",
+    "syncpack": "syncpack lint",
+    "syncpack:fix": "syncpack format && syncpack fix-mismatches",
+    "syncpack:update": "syncpack update",
+    "tsc": "turbo run tsc"
   },
   "workspaces": [
     "apps/*",
