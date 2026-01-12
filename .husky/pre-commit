@@ -2,4 +2,5 @@
 set -e
 editorconfig-checker --exclude '^LICENSE'
 bun run syncpack
+bunx markdownlint-cli2
 bun run check
