@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Home, Menu, X } from "lucide-react";
 import { useState } from "react";
 
-export default function Header() {
+export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
