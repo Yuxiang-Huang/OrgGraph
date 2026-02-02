@@ -28,7 +28,7 @@
     "dev": "turbo run dev",
     "format": "turbo run format",
     "lint": "turbo run lint",
-    "preinstall": "npx only-allow bun",
+    "preinstall": "bunx only-allow bun",
     "prepare": "husky",
     "secrets:pull": "PROJECT=scottystack APPS='web server' ENVS='local dev staging prod' ./scripts/secrets/multi/pull.sh",
     "secrets:push": "PROJECT=scottystack APPS='web server' ENVS='local dev staging prod' ./scripts/secrets/multi/push.sh",

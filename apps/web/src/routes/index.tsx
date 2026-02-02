@@ -1,33 +1,34 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AuthHello } from "@/components/AuthHello.tsx";
+import { Hello } from "@/components/Hello.tsx";
+import { signIn, signOut, useSession } from "@/lib/auth/client.ts";
 
 export const Route = createFileRoute("/")({
   component: App,
 });
 
 function App() {
+  const { data: auth } = useSession();
+
+  if (!auth?.user) {
+    return (
+      <div>
+        Unauthenticated.{" "}
+        <button type="button" onClick={() => signIn()}>
+          Sign In
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="text-center">
-      <header className="min-h-screen flex flex-col items-center justify-center bg-[#282c34] text-white text-[calc(10px+2vmin)]">
-        <p>
-          Edit <code>src/routes/index.tsx</code> and save to reload.
-        </p>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a
-          className="text-[#61dafb] hover:underline"
-          href="https://tanstack.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn TanStack
-        </a>
-      </header>
-    </div>
+    <>
+      <Hello />
+      <AuthHello />
+      <div>Groups: {auth?.user.groups?.join(", ")}</div>
+      <button type="button" onClick={signOut}>
+        Sign Out
+      </button>
+    </>
   );
 }

@@ -28,6 +28,9 @@ fi
 # Install Bun dependencies
 bun install
 
+# Generate dependencies
+bun run sync
+
 # Set up environment variables
 bun run secrets:setup
 bun run secrets:pull all all
