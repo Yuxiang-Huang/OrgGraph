@@ -4,10 +4,10 @@ export const helloService = {
   },
 
   helloAuthenticated: (user: Express.User) => {
-    return { message: `Hello ${user.given_name}!` };
+    return { message: `Hello ${user.givenName}!` };
   },
 
   helloAdmin: (user: Express.User) => {
-    return { message: `Hello ${user.given_name}! You are an admin.` };
+    return { message: `Hello ${user.givenName}! You are an admin.` };
   },
 };

@@ -1,3 +1,4 @@
+/** biome-ignore-all lint/style/useNamingConvention: environment variables are in SCREAMING_CASE */
 import { z } from "zod";
 
 // Define the schema as an object with all of the env

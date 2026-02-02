@@ -6,10 +6,10 @@ import type * as express from "express";
 import jwt from "jsonwebtoken";
 import jwksClient from "jwks-rsa";
 import { env } from "../env.ts";
+import type { HttpError } from "../middlewares/errorHandler.ts";
 import {
   AuthenticationError,
   AuthorizationError,
-  type HttpError,
   InternalServerError,
 } from "../middlewares/errorHandler.ts";
 import { auth } from "./auth.ts";
@@ -38,7 +38,7 @@ declare global {
     interface User {
       sub: string;
       email?: string;
-      given_name?: string;
+      givenName?: string;
       groups?: string[];
     }
   }
@@ -111,7 +111,7 @@ const validateOidc = async (
       return scopeValidationError(request, reject);
     }
 
-    return resolve({ ...decoded });
+    return resolve(decodedTokenToUser(decoded));
   } catch (error) {
     console.error("Authentication error:", error);
     const err = new AuthenticationError();
@@ -122,7 +122,7 @@ const validateOidc = async (
 
 // Verify Bearer Authentication by verifying the token and checking the scopes
 const client = jwksClient({ jwksUri: env.AUTH_JWKS_URI });
-const verifyBearerAuth = async (
+const verifyBearerAuth = (
   request: express.Request,
   reject: (value: unknown) => void,
   resolve: (value: unknown) => void,
@@ -172,7 +172,7 @@ const verifyBearerAuth = async (
         return scopeValidationError(request, reject);
       }
 
-      return resolve({ ...decoded });
+      return resolve(decodedTokenToUser(decoded));
     },
   );
 };
@@ -180,12 +180,12 @@ const verifyBearerAuth = async (
 // Verify if the groups contain ANY of the required scopes
 const hasAnyScope = (groups?: string[], scopes?: string[]) => {
   // If no scopes are required, return true
-  if (!scopes?.length) {
+  if (!scopes || scopes.length === 0) {
     return true;
   }
 
   // If no groups are present, return false
-  if (!groups?.length) {
+  if (!groups || groups.length === 0) {
     return false;
   }
 
@@ -202,4 +202,13 @@ const scopeValidationError = (
   );
   request.authErrors?.push(err);
   return reject(err);
+};
+
+const decodedTokenToUser = (decoded: jwt.JwtPayload) => {
+  return {
+    sub: decoded.sub,
+    email: decoded["email"],
+    givenName: decoded["given_name"],
+    groups: decoded["groups"],
+  };
 };

@@ -63,6 +63,6 @@ server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-process.on("SIGINT", async () => {
+process.on("SIGINT", () => {
   process.exit();
 });

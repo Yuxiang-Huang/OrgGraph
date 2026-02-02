@@ -40,8 +40,8 @@ export const errorHandler = (
   if (req.authErrors && firstAuthError) {
     // the most relevant error is the one with the highest status code
     // 500 (invalid security name here) > 403 Forbidden > 401 Unauthorized
-    const errorToReturn = req.authErrors.reduce((max, err) => {
-      return err.status > max.status ? err : max;
+    const errorToReturn = req.authErrors.reduce((max, currentError) => {
+      return currentError.status > max.status ? currentError : max;
     }, firstAuthError);
 
     return res.status(errorToReturn.status).json({

@@ -7,7 +7,7 @@ import { helloService } from "../services/helloService.ts";
 export class HelloController {
   @Get("/")
   @SuccessResponse(200)
-  async getHello(@Request() _req: ExpressRequest) {
+  getHello(@Request() _req: ExpressRequest) {
     return helloService.hello();
   }
 
@@ -15,7 +15,7 @@ export class HelloController {
   @Security(BEARER_AUTH)
   @Get("/authenticated")
   @SuccessResponse(200)
-  async getHelloAuthenticated(@Request() req: ExpressRequest) {
+  getHelloAuthenticated(@Request() req: ExpressRequest) {
     return helloService.helloAuthenticated(req.user as Express.User);
   }
 
@@ -23,7 +23,7 @@ export class HelloController {
   @Security(BEARER_AUTH, [ADMIN_SCOPE])
   @Get("/admin")
   @SuccessResponse(200)
-  async getHelloAdmin(@Request() req: ExpressRequest) {
+  getHelloAdmin(@Request() req: ExpressRequest) {
     return helloService.helloAdmin(req.user as Express.User);
   }
 }
