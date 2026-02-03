@@ -1,6 +1,7 @@
 import type { Request as ExpressRequest } from "express";
-import { Get, Request, Route, Security, SuccessResponse } from "tsoa";
+import { Get, Request, Response, Route, Security, SuccessResponse } from "tsoa";
 import { BEARER_AUTH, OIDC_AUTH } from "../lib/authentication.ts";
+import type { ErrorResponse } from "../lib/errors.ts";
 import { helloService } from "../services/helloService.ts";
 
 @Route("hello")
@@ -15,6 +16,9 @@ export class HelloController {
   @Security(BEARER_AUTH)
   @Get("/authenticated")
   @SuccessResponse(200)
+  @Response<ErrorResponse>(401, "Unauthorized", {
+    message: "Unauthorized",
+  })
   getHelloAuthenticated(@Request() req: ExpressRequest) {
     return helloService.helloAuthenticated(req.user as Express.User);
   }

@@ -9,5 +9,4 @@ const fetchClient = createFetchClient<paths>({
 });
 
 const $api = createClient(fetchClient);
-
 export { $api };
