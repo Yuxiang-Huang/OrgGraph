@@ -31,7 +31,7 @@
   "private": true,
   "scripts": {
     "build": "bun build src/server.ts --outdir=dist --target=bun --sourcemap",
-    "check": "tsc -b && biome check",
+    "check": "tsc && biome check",
     "dev": "concurrently 'bun run server' 'bun run tsoa:watch' 'bun run openapi:watch'",
     "format": "biome format",
     "generate": "bun run tsoa && bun run openapi",
@@ -40,7 +40,7 @@
     "openapi:watch": "onchange './build/swagger.yaml' -- bun run openapi",
     "server": "dotenv -e .env -- bun run --watch src/server.ts",
     "start": "bun dist/server.js",
-    "tsc": "tsc -b",
+    "tsc": "tsc",
     "tsoa": "tsoa spec-and-routes",
     "tsoa:watch": "onchange 'src/controllers/*.ts' 'tsoa.json' -- bun run tsoa"
   },
