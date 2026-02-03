@@ -50,7 +50,12 @@
         "useConsistentObjectDefinitions": "error", // Require the consistent declaration of object literals.
         "useConsistentArrayType": "error", // Using the same style consistently across your codebase makes it easier for developers to read and understand array types.
         "useConsistentCurlyBraces": "error", // Enforces consistent use of curly braces inside JSX attributes and JSX children.
-        "useConsistentTypeDefinitions": "error", // Enforce type definitions to consistently use either interface or type.
+        "useConsistentTypeDefinitions": {
+          "level": "error",
+          "options": {
+            "style": "interface" // https://www.youtube.com/watch?v=e0AIkYrXAYE&t=8m5s
+          }
+        }, // Enforce type definitions to consistently use either interface or type.
         "useExplicitLengthCheck": "error", // Enforces a specific style length comparisons to make them more clear.
         "useFilenamingConvention": {
           "level": "error",
