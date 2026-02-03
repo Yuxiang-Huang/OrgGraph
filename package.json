@@ -1,5 +1,5 @@
 {
-  "name": "ScottyStack",
+  "name": "Graph",
   "version": "0.0.0",
   "commitlint": {
     "extends": [
@@ -31,8 +31,8 @@
     "lint": "turbo run lint",
     "preinstall": "bunx only-allow bun",
     "prepare": "husky",
-    "secrets:pull": "PROJECT=scottystack APPS='web server' ENVS='local dev staging prod' ./scripts/secrets/multi/pull.sh",
-    "secrets:push": "PROJECT=scottystack APPS='web server' ENVS='local dev staging prod' ./scripts/secrets/multi/push.sh",
+    "secrets:pull": "PROJECT=graph APPS='web server' ENVS='local dev staging prod' ./scripts/secrets/multi/pull.sh",
+    "secrets:push": "PROJECT=graph APPS='web server' ENVS='local dev staging prod' ./scripts/secrets/multi/push.sh",
     "secrets:setup": "./scripts/secrets/setup.sh",
     "start": "turbo start",
     "syncpack": "syncpack lint",

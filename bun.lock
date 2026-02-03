@@ -17,7 +17,7 @@
       },
     },
     "apps/server": {
-      "name": "@scottystack/server",
+      "name": "@graph/server",
       "version": "0.0.0",
       "dependencies": {
         "@tsoa/runtime": "^7.0.0-alpha.0",
@@ -47,11 +47,11 @@
       },
     },
     "apps/web": {
-      "name": "@scottystack/web",
+      "name": "@graph/web",
       "version": "0.0.0",
       "dependencies": {
+        "@graph/server": "workspace:*",
         "@scottylabs/corgi": "^0.3.1",
-        "@scottystack/server": "workspace:*",
         "@tailwindcss/vite": "^4.0.6",
         "@tanstack/react-devtools": "^0.7.0",
         "@tanstack/react-query": "^5.90.20",
@@ -84,7 +84,7 @@
       },
     },
     "packages/common": {
-      "name": "@scottystack/common",
+      "name": "@graph/common",
       "version": "0.0.0",
     },
   },
@@ -283,6 +283,12 @@
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.10", "", {}, "sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ=="],
 
+    "@graph/common": ["@graph/common@workspace:packages/common"],
+
+    "@graph/server": ["@graph/server@workspace:apps/server"],
+
+    "@graph/web": ["@graph/web@workspace:apps/web"],
+
     "@hapi/accept": ["@hapi/accept@6.0.3", "", { "dependencies": { "@hapi/boom": "^10.0.1", "@hapi/hoek": "^11.0.2" } }, "sha512-p72f9k56EuF0n3MwlBNThyVE5PXX40g+aQh+C/xbKrfzahM2Oispv3AXmOIU51t3j77zay1qrX7IIziZXspMlw=="],
 
     "@hapi/ammo": ["@hapi/ammo@6.0.1", "", { "dependencies": { "@hapi/hoek": "^11.0.2" } }, "sha512-pmL+nPod4g58kXrMcsGLp05O2jF4P2Q3GiL8qYV7nKYEh3cGf+rV4P5Jyi2Uq0agGhVU63GtaSAfBEZOlrJn9w=="],
@@ -426,12 +432,6 @@
     "@scarf/scarf": ["@scarf/scarf@1.4.0", "", {}, "sha512-xxeapPiUXdZAE3che6f3xogoJPeZgig6omHEy1rIY5WVsB3H2BHNnZH+gHG6x91SCWyQCzWGsuL2Hh3ClO5/qQ=="],
 
     "@scottylabs/corgi": ["@scottylabs/corgi@0.3.1", "", { "dependencies": { "@base-ui-components/react": "^1.0.0-beta.1", "@tailwindcss/vite": "^4.1.12", "@untitledui/icons": "^0.0.19", "cva": "^1.0.0-beta.4", "motion": "^12.23.12", "tailwind-merge": "^3.3.1", "tailwindcss": "^4.1.12" }, "peerDependencies": { "react": "^19.1.0", "react-dom": "^19.1.0" } }, "sha512-+4RFuQc/lSI9VEzU24jiC8BJCV8d/3S7QGzUz1l0DbbIovvIGEmNL+CiRxVwVBf266v8nabq0FiHqNInOTrjdA=="],
-
-    "@scottystack/common": ["@scottystack/common@workspace:packages/common"],
-
-    "@scottystack/server": ["@scottystack/server@workspace:apps/server"],
-
-    "@scottystack/web": ["@scottystack/web@workspace:apps/web"],
 
     "@sindresorhus/merge-streams": ["@sindresorhus/merge-streams@4.0.0", "", {}, "sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ=="],
 
