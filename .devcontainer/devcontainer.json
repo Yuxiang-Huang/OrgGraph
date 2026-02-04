@@ -1,5 +1,5 @@
 {
-  "name": "Graph",
+  "name": "graph",
   "dockerComposeFile": "./docker-compose.yml",
   "service": "dev",
   "workspaceFolder": "/workspace",
