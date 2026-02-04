@@ -1,9 +1,13 @@
 import { betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { genericOAuth, keycloak } from "better-auth/plugins";
+import { db } from "../db/index.ts";
 import { env } from "../env.ts";
 
 // https://www.better-auth.com/docs/installation#create-a-better-auth-instance
 export const auth = betterAuth({
+  database: drizzleAdapter(db, { provider: "pg" }),
+
   // biome-ignore lint/style/useNamingConvention: defined by better-auth
   baseURL: env.SERVER_URL,
   trustedOrigins: [env.BETTER_AUTH_URL],
